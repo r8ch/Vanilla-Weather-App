@@ -18,6 +18,7 @@ li {
   font-weight: 100px;
   line-height: 19px;
   color: rgb(135, 135, 135);
+  text-transform: capitalize;
 }
 a {
   text-decoration: none;
