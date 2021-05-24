@@ -43,7 +43,7 @@ a {
   width: 64px;
 }
 .weather-temperature strong {
-  color: rgb (33, 33, 33);
+  color: rgb(33, 33, 33);
   font-size: 64px;
   font-weight: 400px;
   line-height: 1px;
@@ -57,4 +57,12 @@ a {
   display: inline;
   position: relative;
   top: 17px;
+}
+.weather-temperature .active {
+    color: rgb(33, 33, 33);
+    cursor: default;
+
+}
+.weather-temperature .active:hover {
+    text-decoration: none;
 }
