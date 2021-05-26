@@ -1,4 +1,30 @@
-function displayForecast() {
+
+
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  return `${day} ${hours}:${minutes}`;
+}
+
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
@@ -25,27 +51,12 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
-function formatDate(timestamp) {
-  let date = new Date(timestamp);
-  let hours = date.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-  let minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let day = days[date.getDay()];
-  return `${day} ${hours}:${minutes}`;
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "01ef729c80c15fd2961d6c2c3b6616c8";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayTemperature(response) {
@@ -70,7 +81,10 @@ function displayTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
+
 function search(city) {
   let apiKey = "01ef729c80c15fd2961d6c2c3b6616c8";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -112,4 +126,4 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Roskilde");
-displayForecast();
+
