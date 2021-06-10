@@ -1,6 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif sans-serif;
-  color: #F8F6FD;
+  color: #f8f6fd;
 }
 h1 {
   color: #202124;
@@ -8,6 +8,7 @@ h1 {
   font-weight: 400;
   line-height: 26px;
   margin-bottom: 0;
+  text-align: right;
 }
 ul {
   margin: 0;
@@ -66,7 +67,8 @@ footer {
 .temp-value {
   display: inline;
   position: relative;
-  top: 17px;
+  top: -49px;
+  left: 76px;
 }
 .weather-temperature .active {
   color: rgb(33, 33, 33);
@@ -112,4 +114,12 @@ footer {
 }
 .weather-forecast-temperature-min {
   opacity: 0.6;
+}
+.overview {
+  text-align: right;
+}
+.stats {
+  position: relative;
+  top: 20px;
+  left: 30px;
 }
